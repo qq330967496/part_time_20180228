@@ -1,0 +1,54 @@
+<style lang="less">
+  image{
+    border:1rpx solid #ccc;
+    margin: 0 auto;
+    display: block;
+  }
+  textarea{
+    border:1rpx solid #ccc;
+    margin: 0 auto;
+    display: block;
+  }
+</style>
+<template>
+  <image src="{{img_src}}" mode="aspectFit"></image>
+  <button @tap="chooseImage">拍照</button>
+  附言：
+  <textarea></textarea>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '测试'
+    }
+    components = {}
+
+    data = {
+      img_src: ''
+    }
+
+    computed = {}
+
+    methods = {
+      chooseImage: () => {
+        let _self = this;
+        wx.chooseImage({
+          count: 1,
+          success: function (r) {
+            console.log(r.tempFilePaths, r.tempFiles)
+            _self.img_src = r.tempFilePaths[0];
+            _self.$apply();
+          }
+        })
+      }
+    }
+
+    events = {}
+
+    onLoad () {
+    }
+  }
+</script>

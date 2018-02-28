@@ -1,0 +1,5 @@
+
+  <image src="{{img_src}}" mode="aspectFit"/>
+  <button bindtap="chooseImage">拍照</button>
+  附言：
+  <textarea/>
